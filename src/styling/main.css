@@ -1,0 +1,99 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #283592;
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.nav-item button {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.navbar-light .nav-item .nav-link {
+    color: #000000;
+}
+
+.searchForm input {
+    border: 1px solid #000000;
+    border-radius: 0.25rem;
+    padding: 0.37rem 0.25rem;
+}
+
+.btn-outline-dark:hover {
+    border-color: #E01B89;
+    background-color: #E01B89;
+}
+
+/* Weather Start */
+
+.weather {
+    padding: 2.5rem 0;
+}
+
+.locations {
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: repeat(4, 1fr);
+
+    list-style-type: none;
+}
+
+.location {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 30px;
+    box-shadow: 12px 12px 2px 1px #E01B89;
+}
+
+.location-name {
+    font-size: 1rem;
+}
+
+.location-temperature {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+/* Weather End */
+
+footer {
+    background-color: #ffffff;
+    padding: 1.5rem;
+}
+
+footer span {
+    margin: 0 10px;
+}
+
+footer .author {
+    /*text-decoration: underline;*/
+    color: #E01B89;
+}
+
+footer a:hover {
+    color: #E01B89;
+}
+
+
+@media (min-height: 680px) {
+    body {
+        height: calc(100vh - 74px - 48px);
+    }
+
+    footer {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+}
+
