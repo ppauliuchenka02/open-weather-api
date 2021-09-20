@@ -14,6 +14,16 @@ function weatherData (locationID) {
         });
 }
 
+function locationsList (city, country) {
+    let arrayList = {
+        city: city,
+        country: country
+    };
+    arrayList.push(city, country);
+    console.log(arrayList[city, country]);
+    console.log(city, country);
+}
+
 function printWeather(data) {
     const tempCelsiusScale = (data.main.temp - 273.15).toFixed(2);
     const weatherIcon = `https://openweathermap.org/img/wn/${
@@ -22,20 +32,22 @@ function printWeather(data) {
     const li = document.createElement("li");
     li.classList.add('location');
     li.innerHTML = `
-        <h2 class="location-name">${data.name}, ${data.sys.country}</h2>
+        <h2 class="location-name" ">${data.name}, ${data.sys.country}</h2>
         <p class="location-temperature">${tempCelsiusScale}<span>°C</span></p>
-        <img style="width: 100px; height: 100px;" src="${weatherIcon}" alt="${data.weather[0].main}">
+        <img src="${weatherIcon}" alt="${data.weather[0].main}">
         <p class="location-description m-0">${data.weather[0].description}</p>
     `;
     const list = document.querySelector('.locations');
-    list.appendChild(li)
+    list.appendChild(li);
+    locationsList(data.name, data.sys.country);
+
 }
 
-window.onload = function () {
+// window.onload = function () {
     document.getElementById('searchBtn').addEventListener('click', event => {
         event.preventDefault();
         weatherData(document.getElementById('searchInput').value);
         document.getElementById('searchForm').reset();
         document.getElementById('searchInput').focus();
     })
-}
+// }

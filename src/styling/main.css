@@ -1,6 +1,16 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #283592;
+    height: calc(100vh - 74px - 48px);
+}
+
+#app {
+    position: relative;
+    min-height: 100vh;
+}
+
+main {
+    margin-bottom: 4.5rem;
 }
 
 .navbar {
@@ -43,7 +53,7 @@ body {
 .locations {
     display: grid;
     grid-gap: 32px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, 292px);
 
     list-style-type: none;
 }
@@ -67,8 +77,12 @@ body {
 /* Weather End */
 
 footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     background-color: #ffffff;
     padding: 1.5rem;
+    border-top: 1px solid #283592;
 }
 
 footer span {
@@ -76,24 +90,9 @@ footer span {
 }
 
 footer .author {
-    /*text-decoration: underline;*/
     color: #E01B89;
 }
 
 footer a:hover {
     color: #E01B89;
 }
-
-
-@media (min-height: 680px) {
-    body {
-        height: calc(100vh - 74px - 48px);
-    }
-
-    footer {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-    }
-}
-
