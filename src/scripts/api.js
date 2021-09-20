@@ -14,16 +14,6 @@ function weatherData (locationID) {
         });
 }
 
-function locationsList (city, country) {
-    let arrayList = {
-        city: city,
-        country: country
-    };
-    arrayList.push(city, country);
-    console.log(arrayList[city, country]);
-    console.log(city, country);
-}
-
 function printWeather(data) {
     const tempCelsiusScale = (data.main.temp - 273.15).toFixed(2);
     const weatherIcon = `https://openweathermap.org/img/wn/${
@@ -39,15 +29,14 @@ function printWeather(data) {
     `;
     const list = document.querySelector('.locations');
     list.appendChild(li);
-    locationsList(data.name, data.sys.country);
 
 }
 
-// window.onload = function () {
+window.onload = function () {
     document.getElementById('searchBtn').addEventListener('click', event => {
         event.preventDefault();
         weatherData(document.getElementById('searchInput').value);
         document.getElementById('searchForm').reset();
         document.getElementById('searchInput').focus();
     })
-// }
+}
