@@ -2,7 +2,7 @@
 
 *__API:__ https://home.openweathermap.org*
 
-ToDo:
+Check list:
 - [x] connect to API
 - [x] send/get request from API
 - [x] connect to firestore
