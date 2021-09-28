@@ -1,7 +1,7 @@
-// import locationsList from './app.js'
+import {collection, addDoc, db, getDocs} from './firebase.js';
 
-function weatherData (locationID) {
-    const apiKey = 'ba94286f29a78f4d9a3dc45b4911d20f';
+function weatherData (locationID, setInfo) {
+    const apiKey = '62d3ce8da012c04f2a1652b8e53c5291';
     let url = 'https://api.openweathermap.org/data/2.5/weather?q=' + locationID + '&appid=' + apiKey;
 
     fetch(url)
@@ -10,22 +10,49 @@ function weatherData (locationID) {
         })
         .then(data => {
             printWeather(data);
-
-            let arrayList = {};
-            arrayList = locationsList(data.name, data.sys.country, arrayList)
+            if (!setInfo) return;
+            setWeatherInfo(data.name, data.sys.country);
         })
         .catch(errors => {
             console.log('error')
         });
 }
 
-function locationsList (city, country, arrayList) {
+let arrayList = [];
+async function setWeatherInfo (countryInfo) {
 
-    arrayList[city] = country;
-    console.log(arrayList);
+    try {
+        const docRef = await addDoc(collection(db, "locationWeather"), {
+            countryInfo
+        });
+        console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
 
-    return arrayList
+
+    // arrayList.push(countryInfo)
+    // // arrayList[city] = country;
+    // console.log(arrayList);
+    //
+    // localStorage.setItem("weatherInfo", JSON.stringify(arrayList));
 }
+
+async function getWeatherInfo () {
+    const querySnapshot = await getDocs(collection(db, "locationWeather"));
+    querySnapshot.forEach((doc) => {
+        weatherData(doc.data().countryInfo, false);
+        console.log(doc.data())
+    });
+    // const data = JSON.parse(localStorage.getItem("weatherInfo"));
+    // if (!data) return;
+    // data.forEach(val => {
+    //     arrayList.push(val);
+    //     weatherData (val, false);
+    // });
+}
+
+getWeatherInfo();
 
 function printWeather(data) {
     const tempCelsiusScale = (data.main.temp - 273.15).toFixed(2);
@@ -49,7 +76,7 @@ window.onload = function () {
         event.preventDefault();
         const searchInput = document.getElementById('searchInput')
         const searchForm = document.getElementById('searchForm');
-        weatherData(searchInput.value);
+        weatherData(searchInput.value, true);
         searchForm.reset();
         searchInput.focus();
     })
