@@ -19,37 +19,25 @@ function weatherData (locationID, setInfo) {
 }
 
 let arrayList = [];
-async function setWeatherInfo (countryInfo) {
+async function setWeatherInfo (city, country) {
 
     try {
         const docRef = await addDoc(collection(db, "locationWeather"), {
-            countryInfo
+            city, country
         });
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
-
-
-    // arrayList.push(countryInfo)
-    // // arrayList[city] = country;
-    // console.log(arrayList);
-    //
-    // localStorage.setItem("weatherInfo", JSON.stringify(arrayList));
 }
 
 async function getWeatherInfo () {
     const querySnapshot = await getDocs(collection(db, "locationWeather"));
     querySnapshot.forEach((doc) => {
+        weatherData(doc.data().city, false);
         weatherData(doc.data().countryInfo, false);
         console.log(doc.data())
     });
-    // const data = JSON.parse(localStorage.getItem("weatherInfo"));
-    // if (!data) return;
-    // data.forEach(val => {
-    //     arrayList.push(val);
-    //     weatherData (val, false);
-    // });
 }
 
 getWeatherInfo();

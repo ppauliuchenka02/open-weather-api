@@ -44,6 +44,16 @@ main {
     background-color: #E01B89;
 }
 
+.modal-body input {
+    margin-bottom: 1rem;
+}
+
+.modal-body span {
+    text-decoration: underline;
+    color: #283592;
+    cursor: pointer;
+}
+
 /* Weather Start */
 
 .weather {
@@ -54,7 +64,7 @@ main {
     display: grid;
     grid-gap: 32px;
     grid-template-columns: repeat(auto-fill, 292px);
-
+    margin-bottom: 5rem;
     list-style-type: none;
 }
 
