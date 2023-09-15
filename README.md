@@ -1,4 +1,5 @@
 # Open Weather Api
+*__View Demo:__ https://raw.githack.com/ppauliuchenka02/open-weather-api/main/index.html.*
 
 *__API:__ https://home.openweathermap.org*
 
